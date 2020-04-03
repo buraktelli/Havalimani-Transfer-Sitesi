@@ -13,7 +13,7 @@
 <!-- Subhead
 ================================================== -->
 <section id="subintro">
-    
+
 </section>
 <section id="breadcrumb">
     <div class="container">
@@ -30,11 +30,54 @@
 <section id="maincontent">
     <div class="container">
         <div class="row">
+            <!-- Subhead
+            ================================================== -->
+            <div class="span8">
+                <aside>
+                    <div class="widget">
+                        <h4>İletişim Bilgilerimiz</h4>
+                        {{setting.contact |safe}}
+                    </div>
+                    <div class="widget">
+                        <h4>Social network</h4>
+                        <ul class="social-links">
+                            <li><a href="#" title="Twitter"><i class="icon-rounded icon-32 icon-twitter"></i></a></li>
+                            <li><a href="#" title="Facebook"><i class="icon-rounded icon-32 icon-facebook"></i></a></li>
+                            <li><a href="#" title="Google plus"><i class="icon-rounded icon-32 icon-google-plus"></i></a></li>
+                            <li><a href="#" title="Linkedin"><i class="icon-rounded icon-32 icon-linkedin"></i></a></li>
+                            <li><a href="#" title="Pinterest"><i class="icon-rounded icon-32 icon-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            <div class="span4">
+                <div class="spacer30"></div>
 
-            {{ setting.contact | safe }}
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
 
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <h4>İletişim Formu</h4>
+                <form action="" method="post" role="form" class="contactForm">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Send Form">
+                </form>
+
+            </div>
         </div>
     </div>
+</section>
+
+
+</div>
+</div>
 </section>
 
 {% endblock %}
