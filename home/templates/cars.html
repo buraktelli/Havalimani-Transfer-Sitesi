@@ -1,0 +1,79 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ categorydata.title }} {% endblock %}
+{% block keywords %}{{ categorydata.keywords }} {% endblock %}
+{% block description %}{{ categorydata.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">{{ categorydata.title }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="maincontent">
+    <div class="container">
+        <h1>{{ categorydata.title}} Kategorisine Ait Araçlar</h1>
+        <hr>
+        <div class="row">
+            <ul class="portfolio-area da-thumbs">
+                {% for rs in cars %}
+                <li class="portfolio-item2" data-id="id-0" data-type="web">
+                    <div class="span3">
+                        <div class="thumbnail">
+                            <div class="image-wrapp">
+                                <img src="{{ rs.image.url }}" alt="Portfolio name" title="" />
+                                <article class="da-animate da-slideFromRight" style="display: block;">
+                                    <h4>{{ rs.title }}</h4>
+                                    <a href="/car/{{ rs.id }}/{{ rs.slug }}"><i class="icon-rounded icon-48 icon-link"></i></a>
+						</a></span>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <div class="pagination">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}

@@ -45,3 +45,13 @@ def iletisim(request):
     form = ContactFormu()
     context = {'setting':setting, 'form':form}
     return render(request,'iletisim.html',context)
+
+def category_cars(request, id, slug):
+    category = Category.objects.all()
+    categorydata = Category.objects.get(pk=id)
+    cars = Car.objects.filter(category_id=id)
+    context = {'cars': cars,
+               'category': category,
+               'categorydata': categorydata,
+               }
+    return render(request, 'cars.html', context)
