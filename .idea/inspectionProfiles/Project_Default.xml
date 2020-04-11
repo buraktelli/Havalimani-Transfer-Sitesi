@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="car.models.Car.objects" />
+          <option value="car.models.Images.objects" />
         </list>
       </option>
     </inspection_tool>
