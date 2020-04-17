@@ -61,11 +61,11 @@
                         <div class="project-widget">
                             <h4><i class="icon-48 icon-beaker"></i> Araç Bilgileri / {{ car.model }}</h4>
                             <ul class="project-detail">
-                                <li><label>Marka :</label> {{ car.marka }}</li>
-                                <li><label>Model :</label> {{ car.model }}</li>
-                                <li><label>Category :</label> {{ car.category }}</li>
-                                <li><label>Project date :</label> 2 March 2013</li>
-                                <li><label>Project link :</label><a href="#">www.somelink.com</a></li>
+                                <li><label>Marka : </label> {{ car.marka }}</li>
+                                <li><label>Model : </label> {{ car.model }}</li>
+                                <li><label>Category : </label> {{ car.category }}</li>
+                                <li><label>Kişi Kapasitesi : </label> {{ car.kisi_sayisi }}</li>
+                                <li><label>Fiyat : </label>{{ car.price }}</li>
                             </ul>
                         </div>
                     </div>
@@ -83,21 +83,70 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="home">
                     <p>
-                        review
-                    </p>
+                        {% for rs in comments %}
+                    <h5>{{ rs.user.first_name }} {{ rs.user.last_name }}</h5>
+                    <h6>{{ rs.subject }} [Rate: {{ rs.rate }}]</h6>
+                    {{ rs.comment }}
+                    <hr>
+                    {% endfor %}
 
+                    {% if user.id is not None %}
+                    <H5>Write your comment</H5>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class ="alert-alert-{{ mesage.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+
+                    {% endif %}
+
+                    <form name="comment" action="/car/addcomment/{{ car.id }}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="span3 form-group">
+                                <input type="text" class="form-control" id="id_subject" name="subject" placeholder="Subject" data-rule="minlen:4"
+                                       data-msg="Please enter at least 8 chars of subject" />
+                            </div>
+                            <div class="span1 form-group">
+                                <div class="">
+                                    <h10>Rate</h10>
+                                    <select id="comment_rate" name="rate" class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br><br>
+                            <br>
+                            <div class="span7 form-group">
+                                    <textarea class="form-control" id="id_comment" name="comment" maxlength="255" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Comment">
+                                    </textarea>
+
+                                <div class="text-center">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-color1 btn-rounded" type="submit">Send Comment</button>
+                    </form>
+                    {% else %}
+                    <li>
+                        <a href="/login">If you want to add comment please Login</a>
+                    </li>
+                    {% endif %}
+                    </p>
                 </div>
                 <div class="tab-pane fade" id="profile">
                     <p>
                         {{ car.detail | safe }}
                     </p>
                 </div>
-
             </div>
         </div>
-
-
     </div>
 </section>
-
 {% endblock %}

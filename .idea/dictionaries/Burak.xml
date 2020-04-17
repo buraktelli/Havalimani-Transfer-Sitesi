@@ -2,6 +2,8 @@
   <dictionary name="Burak">
     <words>
       <w>endblock</w>
+      <w>mptt</w>
+      <w>recursetree</w>
     </words>
   </dictionary>
 </component>

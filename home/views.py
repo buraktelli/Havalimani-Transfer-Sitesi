@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from car.models import Car, Category, Images
+from car.models import Car, Category, Images, Comment
 from home.models import Setting, ContactFormMessage, ContactFormu
 
 
@@ -24,12 +24,14 @@ def index(request):
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting':setting, 'page':'hakkimizda'}
+    category = Category.objects.all()
+    context = {'setting':setting, 'page':'hakkimizda', 'category':category}
     return render(request,'hakkimizda.html',context)
 
 def referanslar(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting':setting, 'page':'referanslar'}
+    category = Category.objects.all()
+    context = {'setting':setting, 'page':'referanslar', 'category':category}
     return render(request,'referanslar.html',context)
 
 def iletisim(request):
@@ -48,7 +50,8 @@ def iletisim(request):
 
     setting = Setting.objects.get(pk=1)
     form = ContactFormu()
-    context = {'setting':setting, 'form':form}
+    category = Category.objects.all()
+    context = {'setting':setting, 'form':form, 'category':category}
     return render(request,'iletisim.html',context)
 
 def category_cars(request, id, slug):
@@ -65,8 +68,10 @@ def car_detail(request, id, slug):
     category = Category.objects.all()
     car = Car.objects.get(pk=id)
     images = Images.objects.filter(car_id=id)
+    comments = Comment.objects.filter(car_id=id, status='True')
     context = {'category': category,
                'car': car,
                'images': images,
+               'comments': comments,
                }
     return render(request, 'car_detail.html', context)
