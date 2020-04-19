@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from car.models import Car, Category, Images, Comment
+from home.forms import SearchForm
 from home.models import Setting, ContactFormMessage, ContactFormu
 
 
@@ -55,12 +56,14 @@ def iletisim(request):
     return render(request,'iletisim.html',context)
 
 def category_cars(request, id, slug):
+    setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
     cars = Car.objects.filter(category_id=id)
     context = {'cars': cars,
                'category': category,
                'categorydata': categorydata,
+               'setting': setting,
                }
     return render(request, 'cars.html', context)
 
@@ -75,3 +78,21 @@ def car_detail(request, id, slug):
                'comments': comments,
                }
     return render(request, 'car_detail.html', context)
+
+def car_search(request):
+    setting = Setting.objects.get(pk=1)
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            cars = Car.objects.filter(title__icontains=query)
+
+            context = {
+                'cars': cars,
+                'category': category,
+                'setting': setting,
+            }
+            return render(request, 'cars_search.html', context)
+
+    return HttpResponseRedirect('/')

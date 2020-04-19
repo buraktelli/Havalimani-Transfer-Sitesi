@@ -9,17 +9,26 @@
         <a class="brand logo" href="/"><img src="{% static 'assets/img/resim.png'%}" height="140" width="140" alt=""></a>
         <!-- end logo -->
         <!-- top menu -->
+
         <div class="navigation">
           <nav>
             <ul class="nav topnav">
+              <li class="dropdown">
+                <div class="header search">
+                  <form action="/search/" method="post">
+                    {% csrf_token%}
+                    <input name="query" class="input search-input" type="text" placeholder="Enter Your Keyword">
+
+                    <button class="search-btn">ARA</button>
+                  </form>
+                </div>
+              </li>
               <li class="dropdown active">
                 <a href="/">Anasayfa</a>
               </li>
               <li class="dropdown">
                 <a href="#">Kategoriler</a>
-
                 <ul class="dropdown-menu">
-
                   {% load mptt_tags %}
                   {% recursetree category %}
                   <li><a href="/category/{{ node.id }}/{{ node.slug }}">{{ node.title }}</a>

@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %} {{ categorydata.title }} {% endblock %}
+{% block title %} Cars Search Results {% endblock %}
 {% block keywords %}{{ categorydata.keywords }} {% endblock %}
 {% block description %}{{ categorydata.description }} {% endblock %}
 
@@ -21,7 +21,7 @@
             <div class="span12">
                 <ul class="breadcrumb notop">
                     <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
-                    <li class="active">{{ categorydata.title }}</li>
+                    <li class="active">Cars Search Results</li>
                 </ul>
             </div>
         </div>
@@ -30,10 +30,11 @@
 
 <section id="maincontent">
     <div class="container">
-        <h1>{{ categorydata.title}} Kategorisine Ait Araçlar</h1>
+        <h1>Results</h1>
         <hr>
         <div class="row">
             <ul class="portfolio-area da-thumbs">
+
                 {% for rs in cars %}
                 <li class="portfolio-item2" data-id="id-0" data-type="web">
                     <div class="span3">
@@ -43,9 +44,11 @@
                                 <article class="da-animate da-slideFromRight" style="display: block;">
                                     <h4>{{ rs.title }}</h4>
                                     <a href="/car/{{ rs.id }}/{{ rs.slug }}"><i class="icon-rounded icon-48 icon-link"></i></a>
-						</a></span>
+                                    </a></span>
                                 </article>
                             </div>
+                            <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a><br>
+                            Fiyat: {{ rs.price }}
                         </div>
                     </div>
                 </li>
