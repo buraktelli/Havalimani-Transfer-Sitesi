@@ -1,55 +1,97 @@
 {% load static %}
+
+<script>
+  $(function() {
+    $("#queryyy").autocomplete({
+      source: "/search_auto/",
+      select: function (event, ui) {
+        AutoCompleteSelectHandler(event, ui)
+      },
+      minLength: 2,
+    });
+  });
+
+  function AutoCompleteSelectHandler(event, ui)
+  {
+    var selectedObj = ui.item;
+  }
+</script>
 <section id="maincontent">
-  <div class="container">
-    <div class="row">
-      {% for rs in randomcars %}
-      <div class="span3 features">
-        <img src="{{ rs.image.url }}" style="height: 140px">
-        <h4>{{ rs.title }}</h4>
+    <div class="container">
+        <div class="row">
 
-        <p class="up">
-          {{ rs.description }}<br>
-        </p>
-        <a href="/car/{{ rs.id }}/{{ rs.slug }}/">Araç Detayı</a>
-      </div>
-      {% endfor %}
-    </div>
+            <form action="/search/" method="post" role="form" class="form-search">
+                {% csrf_token%}
+                <input id="queryyy" name="queryyy" class="input-medium search-query" type="text" placeholder="Enter Your Keyword"/>
+
+                {% load mptt_tags %}
+                <select name="catid" class="span2">
+                    <option value="0">All Categories</option>
+                    {% recursetree category %}
+                    {% if node.is_leaf_node %}
+                    <option value="{{ node.id }}">{{ node.title }}</option>
+                    {% endif %}
+                    {% if not node.is_leaf_node %}
+                    <optgroup label="{{ node.title }}">
+                        {{ children }}
+                    </optgroup>
+                    {% endif %}
+                    {% endrecursetree %}
+
+                </select>
+                <button type="submit" class="btn"><i class="icon-search"></i></button>
+            </form>
+            <hr>
 
 
-    <div class="row">
-      <div class="home-posts">
-        <div class="span12">
-          <h3>Last Inserted 8 Cars</h3>
+            {% for rs in randomcars %}
+            <div class="span3 features">
+                <img src="{{ rs.image.url }}" style="height: 140px">
+                <h4>{{ rs.title }}</h4>
+
+                <p class="up">
+                    {{ rs.description }}<br>
+                </p>
+                <a href="/car/{{ rs.id }}/{{ rs.slug }}/">Araç Detayı</a>
+            </div>
+            {% endfor %}
         </div>
-        {% for rs in lastcars %}
-        <div class="span3">
-          <div class="post-image">
-            <a href="#">
-              <img src="{{ rs.image.url }}" alt="" style="height: 140px">
-            </a>
-          </div>
-          <div class="entry-meta">
-            <a href="/car/{{ rs.id }}/{{ rs.slug }}/"><i class="icon-square icon-48 icon-pencil left"></i></a>
-            <span class="date"></span>
-          </div>
-          <!-- end .entry-meta -->
-          <div class="entry-body">
-            <a href="#">
-              <h5 class="title">{{ rs.title }}</h5>
-            </a>
-            <p>
-              {{ rs.description }}
-            </p>
-          </div>
-          <!-- end .entry-body -->
-          <div class="clear">
-          </div>
+
+
+        <div class="row">
+            <div class="home-posts">
+                <div class="span12">
+                    <h3>Last Inserted 8 Cars</h3>
+                </div>
+                {% for rs in lastcars %}
+                <div class="span3">
+                    <div class="post-image">
+                        <a href="#">
+                            <img src="{{ rs.image.url }}" alt="" style="height: 140px">
+                        </a>
+                    </div>
+                    <div class="entry-meta">
+                        <a href="/car/{{ rs.id }}/{{ rs.slug }}/"><i class="icon-square icon-48 icon-pencil left"></i></a>
+                        <span class="date"></span>
+                    </div>
+                    <!-- end .entry-meta -->
+                    <div class="entry-body">
+                        <a href="#">
+                            <h5 class="title">{{ rs.title }}</h5>
+                        </a>
+                        <p>
+                            {{ rs.description }}
+                        </p>
+                    </div>
+                    <!-- end .entry-body -->
+                    <div class="clear">
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
         </div>
-        {% endfor %}
-
-
-
-      </div>
     </div>
-  </div>
 </section>

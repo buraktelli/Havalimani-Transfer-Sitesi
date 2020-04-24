@@ -1,9 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Burak">
     <words>
+      <w>catid</w>
+      <w>dropdown</w>
       <w>endblock</w>
+      <w>endrecursetree</w>
       <w>mptt</w>
       <w>recursetree</w>
+      <w>topnav</w>
     </words>
   </dictionary>
 </component>

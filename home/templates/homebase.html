@@ -2,46 +2,51 @@
 <html lang="en">
 
 <head>
-      <meta charset="utf-8">
-  <title>{% block title %} Anasayfa {% endblock %}</title>
+    <meta charset="utf-8">
+    <title>{% block title %} Anasayfa {% endblock %}</title>
 
-  <meta name="description" content="{% block description %} Açıklama {% endblock %}">
-  <meta name="keywords" content="{% block keywords %} Anahtar kelimeler {% endblock %}">
-  <!-- styles -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700" rel="stylesheet">
+    <meta name="description" content="{% block description %} Açıklama {% endblock %}">
+    <meta name="keywords" content="{% block keywords %} Anahtar kelimeler {% endblock %}">
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700" rel="stylesheet">
     {% load static %}
     <link href="{% static 'assets/css/bootstrap.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/css/bootstrap-responsive.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/css/docs.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/css/prettyPhoto.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/js/google-code-prettify/prettify.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/css/flexslider.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/css/sequence.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
-  <link href="{% static 'assets/color/default.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap-responsive.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/docs.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/prettyPhoto.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/js/google-code-prettify/prettify.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/flexslider.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/sequence.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/color/default.css'%}" rel="stylesheet">
 
-  <!-- fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'assets/ico/apple-touch-icon-144-precomposed.png'%}">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'assets/ico/apple-touch-icon-114-precomposed.png'%}">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'assets/ico/apple-touch-icon-72-precomposed.png'%}">
-  <link rel="apple-touch-icon-precomposed" href="{% static 'assets/ico/apple-touch-icon-57-precomposed.png'%}">
+    <!-- fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'assets/ico/apple-touch-icon-144-precomposed.png'%}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'assets/ico/apple-touch-icon-114-precomposed.png'%}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'assets/ico/apple-touch-icon-72-precomposed.png'%}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'assets/ico/apple-touch-icon-57-precomposed.png'%}">
 
-  <!-- =======================================================
-    Theme Name: Serenity
-    Theme URL: https://bootstrapmade.com/serenity-bootstrap-corporate-template/
-    Author: BootstrapMade.com
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+    <!-- =======================================================
+      Theme Name: Serenity
+      Theme URL: https://bootstrapmade.com/serenity-bootstrap-corporate-template/
+      Author: BootstrapMade.com
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+    <!-- jQuery !-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     {% block head %} {% endblock %}
 </head>
 
 <body>
-    {% block header %} {% include "header.html" %} {% endblock %}
-    {% block slider %} {% endblock %}
-    {% block content %} {% endblock %}
-    {% block body %} {% endblock %}
-    {% include 'footer.html'%}
-    {% block footer %} {% endblock %}
+{% block header %} {% include "header.html" %} {% endblock %}
+{% block slider %} {% endblock %}
+{% block content %} {% endblock %}
+{% block body %} {% endblock %}
+{% include 'footer.html'%}
+{% block footer %} {% endblock %}
 
 </body>
 </html>

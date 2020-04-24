@@ -1,4 +1,5 @@
 {% load static %}
+
 <header>
   <!-- Navbar
   ================================================== -->
@@ -10,19 +11,13 @@
         <!-- end logo -->
         <!-- top menu -->
 
+
+
+
+
         <div class="navigation">
           <nav>
             <ul class="nav topnav">
-              <li class="dropdown">
-                <div class="header search">
-                  <form action="/search/" method="post">
-                    {% csrf_token%}
-                    <input name="query" class="input search-input" type="text" placeholder="Enter Your Keyword">
-
-                    <button class="search-btn">ARA</button>
-                  </form>
-                </div>
-              </li>
               <li class="dropdown active">
                 <a href="/">Anasayfa</a>
               </li>
