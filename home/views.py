@@ -8,7 +8,7 @@ from django.shortcuts import render
 # Create your views here.
 from car.models import Car, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormMessage, ContactFormu
+from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile
 
 
 def index(request):
@@ -17,13 +17,17 @@ def index(request):
     category = Category.objects.all()
     randomcars = Car.objects.all().order_by('?')[:4]
     lastcars = Car.objects.all().order_by('-id')[:8]
+    #current_user = request.user
+    #profile = UserProfile.objects.get(user_id=current_user.id)
 
     context = {'setting': setting,
                'category': category,
                'page': 'home',
                'sliderdata': sliderdata,
                'randomcars': randomcars,
-               'lastcars': lastcars}
+               'lastcars': lastcars,
+               #'profile': profile,
+               }
     return render(request, 'index.html', context)
 
 def hakkimizda(request):

@@ -1,0 +1,98 @@
+{% extends "homebase.html" %}
+
+{% block title %} User Profile - {{ profile.user_name }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">User Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="maincontent">
+    <div class="container">
+        <div class="row">
+            <!-- Subhead
+            ================================================== -->
+            <div class="span3">
+                <aside>
+                    {% include "user_panel.html" %}
+                </aside>
+            </div>
+            <div class="span9">
+                <aside>
+                    <h4>User Information</h4>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Profile Photo</th>
+                            <td>
+                                <img src="{{ profile.image.url }}" style="height: 90px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Name Surname</th>
+                            <td>{{ profile.user_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ profile.user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{ profile.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Adres</th>
+                            <td>{{ profile.address }}</td>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <td>{{ profile.city }}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{ profile.country }}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+                    </table>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div>
+</div>
+</section>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
