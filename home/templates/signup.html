@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %} Login {{ setting.company }} {% endblock %}
+{% block title %} Sign Up {{ setting.company }} {% endblock %}
 {% block keywords %}{{ setting.keywords }}{% endblock %}
 {% block description %}{{ setting.description }}{% endblock %}
 
@@ -21,7 +21,7 @@
             <div class="span12">
                 <ul class="breadcrumb notop">
                     <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
-                    <li class="active">Login</li>
+                    <li class="active">User Sign Up</li>
                 </ul>
             </div>
         </div>
@@ -47,16 +47,23 @@
                 {% endfor %}
                 {% endif %}
 
-                <h4>Login Formu</h4>
-                <form action="/login/" method="post" role="form" class="contactForm">
+                <h4>Signup Formu</h4>
+
+                <form method="post">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <input class="input" type="text" name="username" placeholder="First name">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="password" name="password" placeholder="Password">
-                    </div>
-                    <input type="submit" value="Login">
+                    {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% if field.help_text %}
+                        <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                    </p>
+                    {% endfor %}
+                    <button type="submit">Sign Up</button>
                 </form>
 
             </div>
