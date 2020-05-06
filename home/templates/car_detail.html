@@ -66,6 +66,13 @@
                                 <li><label>Category : </label> {{ car.category }}</li>
                                 <li><label>Kişi Kapasitesi : </label> {{ car.kisi_sayisi }}</li>
                                 <li><label>Fiyat : </label>{{ car.price }}</li>
+                                <form action="reservation tablosuna eklenecek new olarak, reservasyon listeleme sayfasına gidilecek" method="post">
+
+                                    Days: <input type="number" id="days" name="days" value="1" style="...">
+                                    Checkin: <input type="date" id="checkin" name="checkin" style="width: 140px" required>
+
+                                    <input type="submit" value="Reserve Transfer" class="btn btn-success">
+                                </form>
                             </ul>
                         </div>
                     </div>

@@ -43,14 +43,19 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Profile Photo</th>
+                            <th class="text-left">
+                                <a href="/user/update/" class="btn btn-primary">Update Profile</a>
+                                <a href="/user/password" class="btn btn-primary">Change Password</a>
+                            </th>
+
+
                             <td>
                                 <img src="{{ profile.image.url }}" style="height: 90px">
                             </td>
                         </tr>
                         <tr>
                             <th>Name Surname</th>
-                            <td>{{ profile.user_name }}</td>
+                            <td>{{ name }}</td>
                         </tr>
                         <tr>
                             <th>Email</th>

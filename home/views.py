@@ -10,37 +10,54 @@ from car.models import Car, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile
 
-
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Car.objects.all()[:5]
     category = Category.objects.all()
     randomcars = Car.objects.all().order_by('?')[:4]
     lastcars = Car.objects.all().order_by('-id')[:8]
-    #current_user = request.user
-    #profile = UserProfile.objects.get(user_id=current_user.id)
-
-    context = {'setting': setting,
-               'category': category,
-               'page': 'home',
-               'sliderdata': sliderdata,
-               'randomcars': randomcars,
-               'lastcars': lastcars,
-               #'profile': profile,
-               }
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {'setting': setting,
+                   'category': category,
+                   'page': 'home',
+                   'sliderdata': sliderdata,
+                   'randomcars': randomcars,
+                   'lastcars': lastcars,
+                   'profile': profile,
+                   }
+    else:
+        context = {'setting': setting,
+                   'category': category,
+                   'page': 'home',
+                   'sliderdata': sliderdata,
+                   'randomcars': randomcars,
+                   'lastcars': lastcars,
+                   }
     return render(request, 'index.html', context)
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting':setting, 'page':'hakkimizda', 'category':category}
-    return render(request,'hakkimizda.html',context)
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {'setting':setting, 'page':'hakkimizda', 'category':category, 'profile': profile}
+    else:
+        context = {'setting': setting, 'page': 'hakkimizda', 'category': category}
+    return render(request,'hakkimizda.html', context)
 
 def referanslar(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting':setting, 'page':'referanslar', 'category':category}
-    return render(request,'referanslar.html',context)
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {'setting':setting, 'page':'referanslar', 'category':category, 'profile': profile}
+    else:
+        context = {'setting': setting, 'page': 'referanslar', 'category': category}
+    return render(request,'referanslar.html', context)
 
 def iletisim(request):
     if request.method == 'POST':
@@ -59,19 +76,34 @@ def iletisim(request):
     setting = Setting.objects.get(pk=1)
     form = ContactFormu()
     category = Category.objects.all()
-    context = {'setting':setting, 'form':form, 'category':category}
-    return render(request,'iletisim.html',context)
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {'setting':setting, 'form':form, 'category':category, 'profile': profile}
+    else:
+        context = {'setting': setting, 'form': form, 'category': category}
+    return render(request,'iletisim.html', context)
 
 def category_cars(request, id, slug):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
     cars = Car.objects.filter(category_id=id)
-    context = {'cars': cars,
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {'cars': cars,
                'category': category,
                'categorydata': categorydata,
                'setting': setting,
+               'profile': profile,
                }
+    else:
+        context = {'cars': cars,
+                   'category': category,
+                   'categorydata': categorydata,
+                   'setting': setting,
+                   }
     return render(request, 'cars.html', context)
 
 def car_detail(request, id, slug):
@@ -79,11 +111,21 @@ def car_detail(request, id, slug):
     car = Car.objects.get(pk=id)
     images = Images.objects.filter(car_id=id)
     comments = Comment.objects.filter(car_id=id, status='True')
-    context = {'category': category,
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {'category': category,
                'car': car,
                'images': images,
                'comments': comments,
+               'profile': profile,
                }
+    else:
+        context = {'category': category,
+                   'car': car,
+                   'images': images,
+                   'comments': comments,
+                   }
     return render(request, 'car_detail.html', context)
 
 def car_search(request):
@@ -100,12 +142,21 @@ def car_search(request):
                 cars = Car.objects.filter(title__icontains=query)
             else:
                 cars = Car.objects.filter(title__icontains=query, category_id=catid)
-
-            context = {
-                'cars': cars,
-                'category': category,
-                'setting': setting,
-            }
+            if request.user.is_authenticated:
+                current_user = request.user
+                profile = UserProfile.objects.get(user_id=current_user.id)
+                context = {
+                    'cars': cars,
+                    'category': category,
+                    'setting': setting,
+                    'profile': profile,
+                }
+            else:
+                context = {
+                    'cars': cars,
+                    'category': category,
+                    'setting': setting,
+                }
             return render(request, 'cars_search.html', context)
 
     return HttpResponseRedirect('/')
@@ -143,9 +194,17 @@ def login_view(request):
             return HttpResponseRedirect('/login')
 
     category = Category.objects.all()
-    context = {
-        'category': category,
-    }
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {
+            'category': category,
+            'profile': profile,
+        }
+    else:
+        context = {
+            'category': category,
+        }
     return render(request, 'login.html', context)
 
 def signup_view(request):

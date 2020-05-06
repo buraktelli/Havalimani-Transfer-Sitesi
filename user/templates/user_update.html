@@ -1,0 +1,82 @@
+{% extends "homebase.html" %}
+
+{% block title %} User Update - {{ profile.user_name }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">User Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="maincontent">
+    <div class="container">
+        <div class="row">
+            <!-- Subhead
+            ================================================== -->
+            <div class="span3">
+                <aside>
+                    {% include "user_panel.html" %}
+                </aside>
+            </div>
+            <div class="span9">
+                <aside>
+                    <h4>User Update</h4>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div style="color: #0000ff; font-size: medium">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="content-section">
+                        <div class="media">
+                            <img src="{{ user.userprofile.image.url }}" style="height:150px; border-radius: 45px">
+                        </div><br>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ user_form.as_p }}
+                                {{ profile_form.as_p }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div>
+</div>
+</section>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}

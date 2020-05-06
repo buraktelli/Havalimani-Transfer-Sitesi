@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="247cc5e0-f6d5-4964-9fad-0c80b2f0c6ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/user/templates/user_panel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/templates/user_profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/templates/change_password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/templates/user_update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/car_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/car_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project1/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project1/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,26 +22,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>css&quot;</find>
-      <find>assets</find>
-      <find>js&quot;</find>
-      <find>src=&quot;assets</find>
-      <find>src</find>
-      <find>logo-dark</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>css'%}&quot;</replace>
-      <replace>{% static 'assets</replace>
-      <replace>js'%}&quot;</replace>
-      <replace>src=&quot;{% static 'assets</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -109,6 +95,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1588713970744">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588713970744" />
     <state width="1345" height="159" key="GridCell.Tab.0.bottom" timestamp="1587503069732">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -141,13 +131,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1345" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1587502397866" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1587981391948">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1588762393488">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587981391948" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1587990149480">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588762393488" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588729190660">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1587990149480" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588729190660" />
   </component>
 </project>
