@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
-from car.models import Category, Car, Images, Comment
+from car.models import Category, Car, Images, Comment, Reservation
 
 
 class CarImageInline(admin.TabularInline):
@@ -64,8 +64,12 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['subject', 'comment', 'rate', 'car', 'user', 'status']
     list_filter = ['status']
 
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ['car', 'user', 'total', 'hours', 'check_in', 'price', 'status']
+    list_filter = ['status']
 
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Car, CarAdmin)
 admin.site.register(Images, ImageAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Reservation, ReservationAdmin)

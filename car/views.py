@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from car.models import CommentForm, Comment
+from car.models import CommentForm, Comment, ReservationForm, Reservation
 
 
 def index(request):
@@ -33,4 +33,29 @@ def addcomment(request, id):
             return HttpResponseRedirect(url)
 
     messages.warning(request, "Yorumunuz kaydedilemedi... Kontrol ediniz...")
+    return HttpResponseRedirect(url)
+
+
+def addreservation(request, id):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            current_user = request.user
+
+            data = Reservation()
+            data.user_id = current_user.id
+            data.car_id = id
+            data.name = current_user.first_name
+            data.surname = current_user.last_name
+            data.hours = form.cleaned_data['hours']
+            data.check_in = form.cleaned_data['check_in']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+
+            messages.success(request, "Rezervasyon başarı ile kaydedilmiştir. Teşekkür ederiz....")
+
+            return HttpResponseRedirect('/')
+
+    messages.warning(request, "Rezervasyon kaydedilemedi... Kontrol ediniz...")
     return HttpResponseRedirect(url)

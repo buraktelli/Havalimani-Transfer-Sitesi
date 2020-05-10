@@ -37,17 +37,17 @@
                 </div>
 
                 <div class="row">
-                    <div class="span6">
+                    <div class="span5">
                         <!-- start flexslider -->
                         <div class="flexslider">
                             <ul class="slides">
 
                                 <li>
-                                    <img src="{{ car.image.url }}" alt="" style="height: 370px"/>
+                                    <img src="{{ car.image.url }}" alt="" style="height: 300px; width: 500px"/>
                                 </li>
                                 {% for rs in images%}
                                 <li>
-                                    <img src="{{ rs.image.url }}" alt="" style="height: 370px"/>
+                                    <img src="{{ rs.image.url }}" alt="" style="height: 300px; width: 500px"/>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -66,10 +66,10 @@
                                 <li><label>Category : </label> {{ car.category }}</li>
                                 <li><label>Kişi Kapasitesi : </label> {{ car.kisi_sayisi }}</li>
                                 <li><label>Fiyat : </label>{{ car.price }}</li>
-                                <form action="reservation tablosuna eklenecek new olarak, reservasyon listeleme sayfasına gidilecek" method="post">
-
-                                    Days: <input type="number" id="days" name="days" value="1" style="...">
-                                    Checkin: <input type="date" id="checkin" name="checkin" style="width: 140px" required>
+                                <form name="reservation" action="/car/addreservation/{{ car.id }}" method="post">
+                                    {% csrf_token %}
+                                    Hours: <input type="number" id="hours" name="hours" value="1" style="...">
+                                    Checkin: <input type="date" id="check_in" name="check_in" style="width: 140px" required>
 
                                     <input type="submit" value="Reserve Transfer" class="btn btn-success">
                                 </form>
@@ -90,13 +90,12 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="home">
                     <p>
-                        {% for rs in comments %}
+                     {% for rs in comments %}
                     <h5>{{ rs.user.first_name }} {{ rs.user.last_name }}</h5>
                     <h6>{{ rs.subject }} [Rate: {{ rs.rate }}]</h6>
                     {{ rs.comment }}
                     <hr>
                     {% endfor %}
-
                     {% if user.id is not None %}
                     <H5>Write your comment</H5>
 

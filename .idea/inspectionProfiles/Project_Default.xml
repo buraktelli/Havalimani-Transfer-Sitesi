@@ -5,6 +5,7 @@
       <option name="ignoredErrors">
         <list>
           <option value="E302" />
+          <option value="W292" />
         </list>
       </option>
     </inspection_tool>
@@ -16,6 +17,7 @@
           <option value="car.models.Comment.objects" />
           <option value="django.core.serializers.json.dumps" />
           <option value="home.models.Setting.objects" />
+          <option value="django.db.models.fields.related.ForeignKey.price" />
         </list>
       </option>
     </inspection_tool>

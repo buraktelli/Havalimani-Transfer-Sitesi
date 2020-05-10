@@ -3,12 +3,13 @@ import json
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from car.models import Car, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile
+from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile, UserProfileForm
+
 
 def index(request):
     setting = Setting.objects.get(pk=1)
@@ -18,6 +19,7 @@ def index(request):
     lastcars = Car.objects.all().order_by('-id')[:8]
     if request.user.is_authenticated:
         current_user = request.user
+
         profile = UserProfile.objects.get(user_id=current_user.id)
         context = {'setting': setting,
                    'category': category,
@@ -216,14 +218,60 @@ def signup_view(request):
             password = request.POST['password1']
             user = authenticate(request, username=username, password=password)
             login(request, user)
-            return HttpResponseRedirect('/')
+            form = UserProfileForm()
+            category = Category.objects.all()
+            context = {
+                'category': category,
+                'form': form,
+            }
+            #return render(request, 'addprofile.html', context)
+            return render(request, 'signup.html', context)
 
 
+    if request.user.is_authenticated:
+        current_user = request.user
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        form = SignUpForm()
+        category = Category.objects.all()
+        context = {
+            'category': category,
+            'form': form,
+            'profile': profile,
+        }
+    else:
+        form = SignUpForm()
+        category = Category.objects.all()
+        context = {
+            'category': category,
+            'form': form,
+        }
+    return render(request, 'signup.html', context)
 
-    form = SignUpForm()
+
+def addprofile(request):
+    if request.method == 'POST':
+        user_form = UserProfileForm(request.POST, instance=request.user)
+        data = UserProfile
+        #profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if user_form.is_valid():# and profile_form.is_valid():
+            user_form.save()
+            data = user_form
+            data.save()
+            #profile_form.save()
+            messages.success(request, 'Your account has been created!')
+            form = UserProfileForm()
+            category = Category.objects.all()
+            context = {
+                'category': category,
+                'form': form,
+            }
+            return render(request, 'addprofile.html', context)
+
+    form = UserProfileForm()
     category = Category.objects.all()
     context = {
         'category': category,
         'form': form,
     }
-    return render(request, 'signup.html', context)
+
+    return render(request, 'addprofile.html', context)

@@ -5,7 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
-from car.models import Category, Comment
+from car.models import Category, Comment, Reservation
 from home.models import UserProfile
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
@@ -109,3 +109,30 @@ def deletecomment(request,id):
     Comment.objects.filter(id = id, user_id=current_user.id).delete()
     messages.success(request, 'Comment deleted...')
     return HttpResponseRedirect('/user/comments')
+
+@login_required(login_url='/login')
+def reservations(request):
+    category = Category.objects.all()
+    current_user = request.user
+    reservations = Reservation.objects.filter(user_id = current_user.id)
+    if current_user.is_authenticated:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+        context = {
+            'category': category,
+            'reservations': reservations,
+            'profile': profile,
+        }
+        return render(request, 'user_reservations.html', context)
+    else:
+        context = {
+            'category': category,
+            'reservations': reservations,
+        }
+        return render(request, 'user_reservations.html', context)
+
+@login_required(login_url='/login')
+def deletereservation(request, id):
+    current_user = request.user
+    Reservation.objects.filter(id = id, user_id=current_user.id).delete()
+    messages.success(request, 'Rezervation deleted...')
+    return HttpResponseRedirect('/user/reservations')

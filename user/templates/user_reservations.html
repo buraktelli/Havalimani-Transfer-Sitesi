@@ -1,0 +1,101 @@
+{% extends "homebase.html" %}
+
+{% block title %} User Reservations - {{ profile.user_name }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">User Reservations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="maincontent">
+    <div class="container">
+        <div class="row">
+            <!-- Subhead
+            ================================================== -->
+            <div class="span3">
+                <aside>
+                    {% include "user_panel.html" %}
+                </aside>
+            </div>
+            <div class="span9">
+                <aside>
+                    <h4>User Reservations</h4>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="well well-primary">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Car</th>
+                            <th>User</th>
+                            <th>Total</th>
+                            <th>Hours</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for rs in reservations %}
+                        <tr>
+                            <td>
+                                <a href="/car/{{ rs.car_id }}/{{ rs.car.slug }}">
+                                    <strong>{{ rs.car.title}}</strong>
+                                </a>
+                            </td>
+                            <td>{{ rs.user }}</td>
+                            <td>{{ rs.total }}</td>
+                            <td>{{ rs.hours }}</td>
+                            <td>{{ rs.status }}</td>
+                            <td>{{ rs.check_in | date:'d-m-Y' }}</td>
+
+                            <td><a class="btn btn-primary" href="/user/deletereservation/{{ rs.id }}" onclick="return confirm('Will be deleted ! Are you sure')">Delete</a></td>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </aside>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</div>
+</div>
+</section>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
