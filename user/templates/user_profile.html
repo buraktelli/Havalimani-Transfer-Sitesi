@@ -40,6 +40,13 @@
             <div class="span9">
                 <aside>
                     <h4>User Information</h4>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="well well-primary">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
                     <table class="table">
                         <thead>
                         <tr>

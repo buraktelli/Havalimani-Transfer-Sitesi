@@ -47,7 +47,7 @@
             {% for rs in randomcars %}
             <div class="span3 features">
                 <img src="{{ rs.image.url }}" style="height: 140px">
-                <h4>{{ rs.title }}</h4>
+                <h4>{{ rs.marka }} / {{ rs.model }}</h4>
 
                 <p class="up">
                     {{ rs.description }}<br>
@@ -77,7 +77,7 @@
                     <!-- end .entry-meta -->
                     <div class="entry-body">
                         <a href="/car/{{ rs.id }}/{{ rs.slug }}/">
-                            <h5 class="title">{{ rs.title }}</h5>
+                            <h5 class="title">{{ rs.marka }} / {{ rs.model }}</h5>
                         </a>
                         <p>
                             {{ rs.description }}

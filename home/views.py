@@ -218,14 +218,14 @@ def signup_view(request):
             password = request.POST['password1']
             user = authenticate(request, username=username, password=password)
             login(request, user)
-            form = UserProfileForm()
-            category = Category.objects.all()
-            context = {
-                'category': category,
-                'form': form,
-            }
-            #return render(request, 'addprofile.html', context)
-            return render(request, 'signup.html', context)
+            #create user profile
+            current_user = request.user
+            data=UserProfile()
+            data.user_id = current_user.id
+            data.image = "images/users/indir.jpg"
+            data.save()
+            messages.success(request, "Hoşgeldiniz ! Başarıyla üye oldunuz...")
+            return HttpResponseRedirect('/')
 
 
     if request.user.is_authenticated:
@@ -248,33 +248,33 @@ def signup_view(request):
     return render(request, 'signup.html', context)
 
 #Kullanım dışı
-def addprofile(request):
-    if request.method == 'POST':
-        user_form = UserProfileForm(request.POST, instance=request.user)
-        data = UserProfile
-        #profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
-        if user_form.is_valid():# and profile_form.is_valid():
-            user_form.save()
-            data = user_form
-            data.save()
-            #profile_form.save()
-            messages.success(request, 'Your account has been created!')
-            form = UserProfileForm()
-            category = Category.objects.all()
-            context = {
-                'category': category,
-                'form': form,
-            }
-            return render(request, 'addprofile.html', context)
-
-    form = UserProfileForm()
-    category = Category.objects.all()
-    context = {
-        'category': category,
-        'form': form,
-    }
-
-    return render(request, 'addprofile.html', context)
+# def addprofile(request):
+#     if request.method == 'POST':
+#         user_form = UserProfileForm(request.POST, instance=request.user)
+#         data = UserProfile
+#         #profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
+#         if user_form.is_valid():# and profile_form.is_valid():
+#             user_form.save()
+#             data = user_form
+#             data.save()
+#             #profile_form.save()
+#             messages.success(request, 'Your account has been created!')
+#             form = UserProfileForm()
+#             category = Category.objects.all()
+#             context = {
+#                 'category': category,
+#                 'form': form,
+#             }
+#             return render(request, 'addprofile.html', context)
+#
+#     form = UserProfileForm()
+#     category = Category.objects.all()
+#     context = {
+#         'category': category,
+#         'form': form,
+#     }
+#
+#     return render(request, 'addprofile.html', context)
 
 
 def faq(request):
