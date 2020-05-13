@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from car.models import Car, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile, UserProfileForm
+from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile, UserProfileForm, Faq
 
 
 def index(request):
@@ -247,7 +247,7 @@ def signup_view(request):
         }
     return render(request, 'signup.html', context)
 
-
+#Kullanım dışı
 def addprofile(request):
     if request.method == 'POST':
         user_form = UserProfileForm(request.POST, instance=request.user)
@@ -275,3 +275,16 @@ def addprofile(request):
     }
 
     return render(request, 'addprofile.html', context)
+
+
+def faq(request):
+    current_user = request.user
+    category = Category.objects.all()
+    profile = UserProfile.objects.get(user_id=current_user.id)
+    faq = Faq.objects.all().order_by('ordernumber')
+    context = {
+        'category': category,
+        'profile': profile,
+        'faq': faq,
+    }
+    return render(request, 'faq.html', context)

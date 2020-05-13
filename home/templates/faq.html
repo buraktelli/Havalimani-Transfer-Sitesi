@@ -1,0 +1,67 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sıkça Sorulan Sorular {% endblock %}
+{% block keywords %}  {% endblock %}
+{% block description %}  {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">Sıkça Sorulan Sorular</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="maincontent">
+    <div class="container">
+        <h1>Sıkça Sorulan Sorular</h1>
+        <hr>
+        <div class="row">
+            <ul class="portfolio-area da-thumbs">
+
+                {% for rs in faq %}
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{rs.ordernumber}}">
+                                {{rs.question}}
+                            </a>
+                        </div>
+                        <div id="{{rs.ordernumber}}" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                {{rs.answer}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
