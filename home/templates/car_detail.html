@@ -54,10 +54,10 @@
                         </div>
                         <!-- end flexslider -->
                         <p>
-                            {{ car.description | safe }}
+                            {{ car.description | safe}}
                         </p>
                     </div>
-                    <div class="span7">
+                    <div class="span6">
                         <div class="project-widget">
                             <h4><i class="icon-48 icon-beaker"></i> Araç Bilgileri / {{ car.model }}</h4>
                             <ul class="project-detail">
@@ -68,11 +68,8 @@
                                 <li><label>Fiyat : </label>{{ car.price }}</li>
                                 <form name="reservation" action="/car/addreservation/{{ car.id }}" method="post">
                                     {% csrf_token %}
-                                    <!--
-                                    Start Hour: <input type="time" id="start_hour" name="start_hour" value="1" style="width: 140px">
-                                    -->
-                                    Checkin: <input type="date" id="check_in" name="check_in" style="width: 140px" required><br>
                                     Hours: <input type="number" id="hours" name="hours" value="1" style="...">
+                                    Checkin: <input type="date" id="check_in" name="check_in" style="width: 140px" required>
 
                                     <input type="submit" value="Reserve Transfer" class="btn btn-success">
                                 </form>

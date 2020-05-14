@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib.auth.models import User
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -7,7 +5,6 @@ from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 from django.forms import ModelForm
 from django.urls import reverse
-from django.utils import timezone
 from django.utils.datetime_safe import date
 from django.utils.safestring import mark_safe
 from mptt.fields import TreeForeignKey
@@ -127,7 +124,6 @@ class Reservation(models.Model):
     hours = models.IntegerField(blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     check_in = models.DateField(default=date.today().strftime('%d-%m-%Y'), blank=True)
-    #start_hours = models.TimeField(blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 

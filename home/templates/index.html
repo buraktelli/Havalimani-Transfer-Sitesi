@@ -5,21 +5,16 @@
 {% block description %} {{ setting.description }} {% endblock %}
 
 {% block head %}
-<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
 {% endblock %}
 
 
 {% block slider %} {% include "slider.html" %} {% endblock %}
 
-{% block body %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="well well-primary">
-                {{ message | safe }}
-            </div>
-        {% endfor %}
-    {% endif %}
-
-{% include "content.html" %}
-
-{% endblock %}
+{% block body %}{% if messages %}
+                    {% for message in messages %}
+                    <div class="well well-primary">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %} {% include "content.html" %} {% endblock %}
