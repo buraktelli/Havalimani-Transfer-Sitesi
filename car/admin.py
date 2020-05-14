@@ -16,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'image_tag', 'price', 'status']
+    list_display = ['title', 'category', 'marka', 'image_tag', 'price', 'status']
     readonly_fields = ('image_tag',)#'catimg_tag' var hocanınkinde
     list_filter = ['status', 'category']
     inlines = [CarImageInline]

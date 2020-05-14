@@ -50,6 +50,7 @@ def addreservation(request, id):
             data.surname = current_user.last_name
             data.hours = form.cleaned_data['hours']
             data.check_in = form.cleaned_data['check_in']
+            #data.start_hour = form.cleaned_data['start_hour']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
 

@@ -13,7 +13,7 @@ from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile, 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = Car.objects.all()[:5]
+    sliderdata = Car.objects.all()[:15]
     category = Category.objects.all()
     randomcars = Car.objects.all().order_by('?')[:4]
     lastcars = Car.objects.all().order_by('-id')[:8]
@@ -45,7 +45,7 @@ def hakkimizda(request):
     if request.user.is_authenticated:
         current_user = request.user
         profile = UserProfile.objects.get(user_id=current_user.id)
-        context = {'setting':setting, 'page':'hakkimizda', 'category':category, 'profile': profile}
+        context = {'setting': setting, 'page': 'hakkimizda', 'category': category, 'profile': profile}
     else:
         context = {'setting': setting, 'page': 'hakkimizda', 'category': category}
     return render(request,'hakkimizda.html', context)
@@ -84,7 +84,7 @@ def iletisim(request):
         context = {'setting':setting, 'form':form, 'category':category, 'profile': profile}
     else:
         context = {'setting': setting, 'form': form, 'category': category}
-    return render(request,'iletisim.html', context)
+    return render(request, 'iletisim.html', context)
 
 def category_cars(request, id, slug):
     setting = Setting.objects.get(pk=1)
@@ -246,35 +246,6 @@ def signup_view(request):
             'form': form,
         }
     return render(request, 'signup.html', context)
-
-#Kullanım dışı
-# def addprofile(request):
-#     if request.method == 'POST':
-#         user_form = UserProfileForm(request.POST, instance=request.user)
-#         data = UserProfile
-#         #profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
-#         if user_form.is_valid():# and profile_form.is_valid():
-#             user_form.save()
-#             data = user_form
-#             data.save()
-#             #profile_form.save()
-#             messages.success(request, 'Your account has been created!')
-#             form = UserProfileForm()
-#             category = Category.objects.all()
-#             context = {
-#                 'category': category,
-#                 'form': form,
-#             }
-#             return render(request, 'addprofile.html', context)
-#
-#     form = UserProfileForm()
-#     category = Category.objects.all()
-#     context = {
-#         'category': category,
-#         'form': form,
-#     }
-#
-#     return render(request, 'addprofile.html', context)
 
 
 def faq(request):
