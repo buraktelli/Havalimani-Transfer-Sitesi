@@ -65,11 +65,15 @@
                                 <li><label>Model : </label> {{ car.model }}</li>
                                 <li><label>Category : </label> {{ car.category }}</li>
                                 <li><label>Kişi Kapasitesi : </label> {{ car.kisi_sayisi }}</li>
-                                <li><label>Fiyat : </label>{{ car.price }}</li>
+                                <li><label>Saatlik Fiyat : </label>{{ car.price }}</li>
                                 <form name="reservation" action="/car/addreservation/{{ car.id }}" method="post">
                                     {% csrf_token %}
-                                    Hours: <input type="number" id="hours" name="hours" value="1" style="...">
-                                    Checkin: <input type="date" id="check_in" name="check_in" style="width: 140px" required>
+
+                                    Start Hour: <input type="time" id="start_hour" name="start_hour" style="..." required>
+                                    Date: <input type="date" id="check_in" name="check_in" style="width: 140px" required>
+                                    <br>
+                                    Hours: <input type="number" id="hours" name="hours" value="1" style="..." required>
+                                    <br>
 
                                     <input type="submit" value="Reserve Transfer" class="btn btn-success">
                                 </form>

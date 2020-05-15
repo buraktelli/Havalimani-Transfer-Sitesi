@@ -13,7 +13,7 @@ from home.models import Setting, ContactFormMessage, ContactFormu, UserProfile, 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = Car.objects.all()[:5]
+    sliderdata = Car.objects.all()[:15]
     category = Category.objects.all()
     randomcars = Car.objects.all().order_by('?')[:4]
     lastcars = Car.objects.all().order_by('-id')[:8]

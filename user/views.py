@@ -6,11 +6,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from car.models import Category, Comment, Reservation
-from home.models import UserProfile
+from home.models import UserProfile, Setting
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
 def index(request):
+    setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     current_user = request.user
 
@@ -20,10 +21,12 @@ def index(request):
         'category': category,
         'profile': profile,
         'name': name,
+        'setting': setting,
     }
     return render(request, 'user_profile.html', context)
 
 def user_update(request):
+    setting = Setting.objects.get(pk=1)
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
@@ -45,6 +48,7 @@ def user_update(request):
                 'user_form': user_form,
                 'profile_form': profile_form,
                 'profile': profile,
+                'setting': setting,
             }
             return render(request, 'user_update.html', context)
         else:
@@ -52,10 +56,12 @@ def user_update(request):
                 'category': category,
                 'user_form': user_form,
                 'profile_form': profile_form,
+                'setting': setting,
             }
             return render(request, 'user_update.html', context)
 
 def change_password(request):
+    setting = Setting.objects.get(pk=1)
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -76,15 +82,18 @@ def change_password(request):
                 'form': form,
                 'category': category,
                 'profile': profile,
+                'setting': setting,
             })
         else:
             return render(request, 'change_password.html', {
                 'form': form,
                 'category': category,
+                'setting': setting,
             })
 
 @login_required(login_url='/login')
 def comments(request):
+    setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     current_user = request.user
     comments = Comment.objects.filter(user_id = current_user.id)
@@ -94,12 +103,14 @@ def comments(request):
             'category': category,
             'comments': comments,
             'profile': profile,
+            'setting': setting,
         }
         return render(request, 'user_comments.html', context)
     else:
         context = {
             'category': category,
             'comments': comments,
+            'setting': setting,
         }
         return render(request, 'user_comments.html', context)
 
@@ -112,6 +123,7 @@ def deletecomment(request,id):
 
 @login_required(login_url='/login')
 def reservations(request):
+    setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     current_user = request.user
     reservations = Reservation.objects.filter(user_id = current_user.id)
@@ -121,12 +133,14 @@ def reservations(request):
             'category': category,
             'reservations': reservations,
             'profile': profile,
+            'setting': setting,
         }
         return render(request, 'user_reservations.html', context)
     else:
         context = {
             'category': category,
             'reservations': reservations,
+            'setting': setting,
         }
         return render(request, 'user_reservations.html', context)
 

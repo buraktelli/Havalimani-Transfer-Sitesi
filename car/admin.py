@@ -65,7 +65,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ['car', 'user', 'total', 'hours', 'check_in', 'price', 'status']
+    list_display = ['car', 'user', 'total', 'hours', 'check_in', 'start_hour', 'price', 'status']
     list_filter = ['status']
 
 admin.site.register(Category, CategoryAdmin2)

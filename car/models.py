@@ -124,6 +124,7 @@ class Reservation(models.Model):
     hours = models.IntegerField(blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     check_in = models.DateField(default=date.today().strftime('%d-%m-%Y'), blank=True)
+    start_hour = models.CharField(max_length=50, blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -141,4 +142,4 @@ class Reservation(models.Model):
 class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
-        fields = ['hours', 'check_in']
+        fields = ['hours', 'check_in', 'start_hour']

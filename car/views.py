@@ -48,8 +48,10 @@ def addreservation(request, id):
             data.car_id = id
             data.name = current_user.first_name
             data.surname = current_user.last_name
+            data.start_hour = form.cleaned_data['start_hour']
             data.hours = form.cleaned_data['hours']
             data.check_in = form.cleaned_data['check_in']
+
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
 
