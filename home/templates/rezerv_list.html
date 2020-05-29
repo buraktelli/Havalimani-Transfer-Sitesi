@@ -1,0 +1,68 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ categorydata.title }} {% endblock %}
+{% block keywords %}{{ categorydata.keywords }} {% endblock %}
+{% block description %}{{ categorydata.description }} {% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">Uygun Araçlar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="maincontent">
+    <div class="container">
+        <h1>{{kisi_sayisi}} Kişilik Araçlar</h1>
+        <h4>From {{start_from}}<br> To {{destination_to}}</h4>
+        <hr>
+        <div class="row">
+            <ul class="portfolio-area da-thumbs">
+                {% for rs in cars %}
+                <li class="portfolio-item2" data-id="id-0" data-type="web">
+                    <div class="span3">
+                        <div class="thumbnail">
+                            <div class="image-wrapp">
+                                <img src="{{ rs.image.url }}" alt="Portfolio name" title="" style="height: 140px"/>
+                                <article class="da-animate da-slideFromRight" style="display: block;">
+                                    <h4>{{ rs.title }}</h4>
+                                    <a href="/car/{{ rs.id }}/{{ rs.slug }}"><i class="icon-rounded icon-48 icon-link"></i></a>
+                                    </a></span>
+                                </article>
+                            </div>
+                        </div>
+                        <h4>{{ rs.price }} TL/Km</h4>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}

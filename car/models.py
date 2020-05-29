@@ -121,10 +121,16 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, blank=True)
     surname = models.CharField(max_length=50, blank=True)
-    hours = models.IntegerField(blank=True)
+    phone = models.CharField(blank=True, max_length=20)
+    start_from = models.CharField(max_length=50, blank=True)
+    destination_to = models.CharField(max_length=50, blank=True)
+    distance = models.IntegerField(blank=True)
+    time = models.CharField(blank=True, max_length=10)
+    kisi_sayisi = models.IntegerField(blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='New')
-    check_in = models.DateField(default=date.today().strftime('%d-%m-%Y'), blank=True)
-    start_hour = models.CharField(max_length=50, blank=True)
+    date = models.DateField(default=date.today().strftime('%Y-%m-%d'), blank=True)
+    address = models.TextField(max_length=100, blank=True)
+    adminnote = models.CharField(blank=True, max_length=100)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -133,7 +139,7 @@ class Reservation(models.Model):
 
     @property
     def total(self):
-        return (self.hours * self.car.price)
+        return (self.distance * self.car.price)
 
     @property
     def price(self):
@@ -142,4 +148,9 @@ class Reservation(models.Model):
 class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
-        fields = ['hours', 'check_in', 'start_hour']
+        fields = ['distance', 'date', 'start_from', 'destination_to', 'kisi_sayisi', 'address', 'time', 'phone']
+
+class ReservationListForm(ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['start_from', 'destination_to', 'kisi_sayisi', 'date', 'distance']

@@ -1,0 +1,90 @@
+{% extends "homebase.html" %}
+
+{% block title %} User Reservations - {{ profile.user_name }} {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block head %}
+<link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+{% endblock %}
+
+{% block body %}
+
+<!-- Subhead
+================================================== -->
+<section id="subintro">
+
+</section>
+<section id="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <ul class="breadcrumb notop">
+                    <li><a href="/">Anasayfa</a><span class="divider">/</span></li>
+                    <li class="active">New Reservation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="maincontent">
+    <div class="container">
+        <div class="row">
+            <!-- Subhead
+            ================================================== -->
+            <div class="span4">
+                <aside>
+                    <h4><i class="icon-48 icon-beaker"></i> Araç Bilgileri / {{ car.model }}</h4>
+                    <ul class="project-detail">
+                        <li><label>Marka : </label> {{ car.marka }}/{{ car.model }}</li>
+                        <li><label>Category : </label> {{ car.category }}</li>
+                        <li><label>Start From : </label>{{ start_from }}</li>
+                        <li><label>Destination To : </label>{{ destination_to }}</li>
+                        <li><label>Kişi Kapasitesi : </label> {{ car.kisi_sayisi }}</li>
+                        <li><label>İstenen Kişi Sayısı : </label> {{ kisi_sayisi }}</li>
+                        <li><label>Fiyat / KM : </label>{{ car.price }}</li>
+                        <li><label>Distance : </label>{{ distance }} Km</li>
+                        <li><label>Total Price : </label>{{ total }}</li>
+
+                    </ul>
+                </aside>
+            </div>
+            <div class="span8">
+                <aside>
+                    <h4>New Reservation</h4>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="well well-primary">
+                        {{ message | safe }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <form name="reservation" action="/car/addreservation/{{ car.id }}" method="post">
+                        {% csrf_token %}
+                        Start From:       <input type="text" id="start_from" name="start_from" style="width:120px" required value="{{ start_from }}">
+                        Destination To:   <input type="text" id="destination_to" name="destination_to" style="width:120px" required value="{{ destination_to }}">
+                        Address:       <textarea class="" id="address" name="address" maxlength="255"  required placeholder="Address">
+                                    </textarea><br>
+                        Phone:         <br><input type="phone" id="phone" name="phone" style="width:120px" required><br>
+                        Distance:         <br><input type="number" id="distance" name="distance" style="width:120px" required value="{{ distance }}">KM<br>
+                        Date:             <br><input type="date" id="date" name="date" style="width:120px" required><br>
+                        Time:             <br><input type="time" id="time" name="time" style="width:120px" required><br>
+                        Number of Person: <br><input type="number" id="kisi_sayisi" name="kisi_sayisi" value="{{ kisi_sayisi }}" max="{{ car.kisi_sayisi }}" style="width:120px" required value="{{ kisi_sayisi }}">
+                        <br>
+                        <input type="submit" value="Onayla" class="btn btn-success">
+                    </form>
+                </aside>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}

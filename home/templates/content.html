@@ -19,7 +19,109 @@
 <section id="maincontent">
     <div class="container">
         <div class="row">
+            <form name="reservation_list" action="/car/reservation_list" method="post">
+                {% csrf_token %}
+                Start From: <select name="start_from" id="start_from" class="select_yer" autocomplete="off" required>
+                <option value="">-- Please Select --</option>
+                <option value="istanbul_airport_ist">Istanbul Airport (IST)</option>
+                <option value="istanbul_sabiha_gokcen_airport_saw">Istanbul Sabiha Gokcen Airport (SAW)</option>
+                <option value="sultanahmet_sirkeci_old_city">Sultanahmet Sirkeci Old City</option>
+                <option value="aksaray_laleli_beyazit">Aksaray Laleli Beyazıt</option>
+                <option value="karakoy_cruise_port">Karakoy Cruise Port</option>
+                <option value="taksim_karakoy_beyoglu">Taksim Karakoy Beyoglu</option>
+                <option value="besiktas">Beşiktaş</option>
+                <option value="beyoglu">Beyoğlu</option>
+                <option value="eyup">Eyüp</option>
+                <option value="fatih">Fatih</option>
+                <option value="sisli">Şişli</option>
+                <option value="zeytinburnu">Zeytinburnu</option>
+                <option value="arnavutkoy">Arnavutköy</option>
+                <option value="atasehir">Ataşehir</option>
+                <option value="avcilar">Avcılar</option>
+                <option value="bagcilar">Bağcılar</option>
+                <option value="bahcelievler">Bahçelievler</option>
+                <option value="bakirkoy">Bakırköy</option>
+                <option value="basaksehir">Başakşehir</option>
+                <option value="bayrampasa">Bayrampaşa</option>
+                <option value="beykoz">Beykoz</option>
+                <option value="beylikduzu">Beylikdüzü</option>
+                <option value="buyukcekmece">Büyükçekmece</option>
+                <option value="catalca">Çatalca</option>
+                <option value="cekmekoy">Çekmeköy</option>
+                <option value="esenler">Esenler</option>
+                <option value="esenyurt">Esenyurt</option>
+                <option value="gaziosmanpasa">Gaziosmanpaşa</option>
+                <option value="gungoren">Güngören</option>
+                <option value="kadikoy">Kadıköy</option>
+                <option value="kagithane">Kağıthane</option>
+                <option value="kartal">Kartal</option>
+                <option value="kucukcekmece">Küçükçekmece</option>
+                <option value="maltepe">Maltepe</option>
+                <option value="pendik">Pendik</option>
+                <option value="sancaktepe">Sancaktepe</option>
+                <option value="sariyer">Sarıyer</option>
+                <option value="sile">Şile</option>
+                <option value="sultanbeyli">Sultanbeyli</option>
+                <option value="silivri">Silivri</option>
+                <option value="sultangazi">Sultangazi</option>
+                <option value="tuzla">Tuzla</option>
+                <option value="umraniye">Ümraniye</option>
+                <option value="uskudar">Üsküdar</option>
+            </select>
+                Destination To:
+                <select name="destination_to" id="destination_to" class="select_yer" autocomplete="off" required>
+                    <option value="">-- Please Select --</option>
+                    <option value="istanbul_airport_ist">Istanbul Airport (IST)</option>
+                    <option value="istanbul_sabiha_gokcen_airport_saw">Istanbul Sabiha Gokcen Airport (SAW)</option>
+                    <option value="sultanahmet_sirkeci_old_city">Sultanahmet Sirkeci Old City</option>
+                    <option value="aksaray_laleli_beyazit">Aksaray Laleli Beyazıt</option>
+                    <option value="karakoy_cruise_port">Karakoy Cruise Port</option>
+                    <option value="taksim_karakoy_beyoglu">Taksim Karakoy Beyoglu</option>
+                    <option value="besiktas">Beşiktaş</option>
+                    <option value="beyoglu">Beyoğlu</option>
+                    <option value="eyup">Eyüp</option>
+                    <option value="fatih">Fatih</option>
+                    <option value="sisli">Şişli</option>
+                    <option value="zeytinburnu">Zeytinburnu</option>
+                    <option value="arnavutkoy">Arnavutköy</option>
+                    <option value="atasehir">Ataşehir</option>
+                    <option value="avcilar">Avcılar</option>
+                    <option value="bagcilar">Bağcılar</option>
+                    <option value="bahcelievler">Bahçelievler</option>
+                    <option value="bakirkoy">Bakırköy</option>
+                    <option value="basaksehir">Başakşehir</option>
+                    <option value="bayrampasa">Bayrampaşa</option>
+                    <option value="beykoz">Beykoz</option>
+                    <option value="beylikduzu">Beylikdüzü</option>
+                    <option value="buyukcekmece">Büyükçekmece</option>
+                    <option value="catalca">Çatalca</option>
+                    <option value="cekmekoy">Çekmeköy</option>
+                    <option value="esenler">Esenler</option>
+                    <option value="esenyurt">Esenyurt</option>
+                    <option value="gaziosmanpasa">Gaziosmanpaşa</option>
+                    <option value="gungoren">Güngören</option>
+                    <option value="kadikoy">Kadıköy</option>
+                    <option value="kagithane">Kağıthane</option>
+                    <option value="kartal">Kartal</option>
+                    <option value="kucukcekmece">Küçükçekmece</option>
+                    <option value="maltepe">Maltepe</option>
+                    <option value="pendik">Pendik</option>
+                    <option value="sancaktepe">Sancaktepe</option>
+                    <option value="sariyer">Sarıyer</option>
+                    <option value="sile">Şile</option>
+                    <option value="sultanbeyli">Sultanbeyli</option>
+                    <option value="silivri">Silivri</option>
+                    <option value="sultangazi">Sultangazi</option>
+                    <option value="tuzla">Tuzla</option>
+                    <option value="umraniye">Ümraniye</option>
+                    <option value="uskudar">Üsküdar</option>
+                </select>
+                Number of Person: <input type="number" id="kisi_sayisi" name="kisi_sayisi" value="1" style="width:40px" required>
 
+
+                <input type="submit" value="Search Transfer" class="btn btn-success">
+            </form>
+            <hr>
             <form action="/search/" method="post" role="form" class="form-search">
                 {% csrf_token%}
                 <input id="queryyy" name="queryyy" class="input-medium search-query" type="text" placeholder="Enter Your Keyword"/>
@@ -41,6 +143,7 @@
                 </select>
                 <button type="submit" class="btn"><i class="icon-search"></i></button>
             </form>
+
             <hr>
 
 

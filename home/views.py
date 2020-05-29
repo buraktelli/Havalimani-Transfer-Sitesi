@@ -220,7 +220,7 @@ def signup_view(request):
             login(request, user)
             #create user profile
             current_user = request.user
-            data=UserProfile()
+            data = UserProfile()
             data.user_id = current_user.id
             data.image = "images/users/indir.jpg"
             data.save()
@@ -246,36 +246,6 @@ def signup_view(request):
             'form': form,
         }
     return render(request, 'signup.html', context)
-
-#Kullanım dışı
-# def addprofile(request):
-#     if request.method == 'POST':
-#         user_form = UserProfileForm(request.POST, instance=request.user)
-#         data = UserProfile
-#         #profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
-#         if user_form.is_valid():# and profile_form.is_valid():
-#             user_form.save()
-#             data = user_form
-#             data.save()
-#             #profile_form.save()
-#             messages.success(request, 'Your account has been created!')
-#             form = UserProfileForm()
-#             category = Category.objects.all()
-#             context = {
-#                 'category': category,
-#                 'form': form,
-#             }
-#             return render(request, 'addprofile.html', context)
-#
-#     form = UserProfileForm()
-#     category = Category.objects.all()
-#     context = {
-#         'category': category,
-#         'form': form,
-#     }
-#
-#     return render(request, 'addprofile.html', context)
-
 
 def faq(request):
     current_user = request.user

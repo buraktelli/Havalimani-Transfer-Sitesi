@@ -54,11 +54,13 @@
                         <tr>
                             <th>Car</th>
                             <th>Date</th>
-                            <th>Start Hour</th>
-                            <th>Hours</th>
-                            <th>Price/Hour</th>
-                            <th>Total</th>
+                            <th>Start From</th>
+                            <th>Destination To</th>
+                            <th>Distance</th>
+                            <th>Price/Km</th>
+                            <th>Total Price</th>
                             <th>Status</th>
+                            <th>Admin Note</th>
                             <th>Action</th>
 
                         </tr>
@@ -71,12 +73,14 @@
                                     <strong>{{ rs.car.title}}</strong>
                                 </a>
                             </td>
-                            <td>{{ rs.check_in | date:'d-m-Y' }}</td>
-                            <td>{{ rs.start_hour }}</td>
-                            <td>{{ rs.hours }}</td>
+                            <td>{{ rs.date | date:'d-m-Y' }}</td>
+                            <td>{{ rs.start_from }}</td>
+                            <td>{{ rs.destination_to }}</td>
+                            <td>{{ rs.distance }}</td>
                             <td>{{ rs.car.price }}</td>
                             <td>{{ rs.total }}</td>
                             <td>{{ rs.status }}</td>
+                            <td>{{ rs.adminnote }}</td>
                             <td><a class="btn btn-primary" href="/user/deletereservation/{{ rs.id }}" onclick="return confirm('Will be deleted ! Are you sure')">Delete</a></td>
                         {% endfor %}
                         </tbody>
